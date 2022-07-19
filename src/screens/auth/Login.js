@@ -8,6 +8,8 @@ import * as Facebook from "expo-facebook";
 const appId = "1047121222092614";
 
 let user={username:'khalil',password:'123'}
+let user1={username:'riadh',password:'123'}
+
 
 export default function LoginScreen({navigation,route}) {
 
