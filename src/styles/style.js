@@ -1,19 +1,25 @@
 import { StyleSheet } from 'react-native'
 
-import { theme } from '../theme'
-import colors from '../constants/colors'
-const gris=colors.gris
-const blue=colors.blue
-const beige=colors.beige
+// import { theme } from '../theme'
+// import colors from '../constants/colors'
+// const gris=colors.gris
+// const blue=colors.blue
+// const beige=colors.beige
 
-export const styles = StyleSheet.create({
+
+
+const styles = StyleSheet.create({
     body: {
         backgroundColor: 'white',
         height: '100%'
     },
+    button:{
+        height:100,
+        width:100
+    },
     //search
     search: {
-        backgroundColor: gris,
+        // backgroundColor: gris,
         borderRadius: 10,
         height: 30,
         margin: 10,
@@ -31,7 +37,7 @@ export const styles = StyleSheet.create({
         height: 60,
         width: '100%',
         justifyContent: 'space-between',
-        backgroundColor: blue,
+        // backgroundColor: blue,
         padding: 10
 
     },
@@ -102,7 +108,7 @@ export const styles = StyleSheet.create({
 
     //messages
     pressableAllMessages: {
-        backgroundColor: beige,
+        // backgroundColor: beige,
         height: 80,
         padding: 10,
         margin: 10,
@@ -127,7 +133,7 @@ export const styles = StyleSheet.create({
         margin:10,       
         padding:10,        
         borderRadius:25,
-        backgroundColor:beige,        
+        // backgroundColor:beige,        
     },
     messageRecuContainer:{
         width:'100%',
@@ -140,7 +146,7 @@ export const styles = StyleSheet.create({
         margin:10,       
         padding:10,        
         borderRadius:25,
-        backgroundColor:blue
+        // backgroundColor:blue
     },
     textMessage:{
         fontSize:18,  
@@ -150,7 +156,7 @@ export const styles = StyleSheet.create({
         width: '100%',
         paddingLeft: 20,
         paddingRight: 10,
-        backgroundColor: gris,
+        // backgroundColor: gris,
         borderRadius: 25,
         // position: 'fixed',
         // bottom: 0
@@ -164,7 +170,8 @@ export const styles = StyleSheet.create({
     //Camera screen
     container: {
 		flex: 1,
-		backgroundColor: theme.colors.black
+		// backgroundColor: theme.colors.black
 	}
 
 })
+export default styles;
