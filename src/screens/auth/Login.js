@@ -1,6 +1,6 @@
 import React,{useState} from "react";
 import AsyncStorage from '@react-native-async-storage/async-storage'
-import styles from "../styles/styleAuth";
+import styles from "../../styles/styleAuth";
 import { Alert, Image, Keyboard, KeyboardAvoidingView, Text, TextInput, TouchableWithoutFeedback, Pressable, View } from "react-native";
 import { Button, SocialIcon } from "react-native-elements";
 import * as Facebook from "expo-facebook";
@@ -60,7 +60,7 @@ export default function LoginScreen({navigation,route}) {
         <View style={styles.loginScreenContainer}>
           <View style={styles.loginFormView}>
             <Text style={styles.logoText}></Text>
-            <Image style={{height:80,width:'100%'}} source={require('../../assets/icon.png')} />
+            <Image style={{height:80,width:'100%'}} source={require('../../../assets/icon.png')} />
             <TextInput placeholder="Username" placeholderColor="#c4c3cb" style={styles.loginFormTextInput} onChangeText={setUsername}/>
             <TextInput placeholder="Password" placeholderColor="#c4c3cb" style={styles.loginFormTextInput} onChangeText={setPassword} secureTextEntry={true} />
             <Button buttonStyle={styles.loginButton} onPress={() => onLoginPress()} title="Login" />

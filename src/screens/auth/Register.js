@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 
-import styles from "../styles/styleAuth";
+import styles from "../../styles/styleAuth";
 import { Alert, Image, Keyboard, KeyboardAvoidingView, Text, TextInput, TouchableWithoutFeedback, Pressable, View } from "react-native";
 import { Button, SocialIcon } from "react-native-elements";
 import * as Facebook from "expo-facebook";
@@ -10,6 +10,7 @@ const appId = "1047121222092614";
 export default function LoginScreen({navigation,route}) {
   const onRegisterPress = () => {route.params.setUser(false)};
   const onLoginPress = () => {navigation.navigate('login')};
+  const [dateOfBirth,setDateOfBirth]=useState(null)
 
 //   const onFbLoginPress = async () => {
 //     try {
@@ -34,10 +35,10 @@ export default function LoginScreen({navigation,route}) {
         <View style={styles.loginScreenContainer}>
           <View style={styles.loginFormView}>
             <Text style={styles.logoText}></Text>
-            <Image style={{height:80,width:'100%'}} source={require('../../assets/splash.png')} />
+            <Image style={{height:80,width:'100%'}} source={require('../../../assets/splash.png')} />
             <TextInput placeholder="Username" placeholderColor="#c4c3cb" style={styles.loginFormTextInput} />
             <TextInput placeholder="Email" placeholderColor="#c4c3cb" style={styles.loginFormTextInput} />
-            <TextInput placeholder="Date of Birth" placeholderColor="#c4c3cb" style={styles.loginFormTextInput} />
+            <TextInput placeholder="Date of Birth" placeholderColor="#c4c3cb" style={styles.loginFormTextInput} onChangeText={setDateOfBirth} />
             <TextInput placeholder="Password" placeholderColor="#c4c3cb" style={styles.loginFormTextInput} secureTextEntry={true} />
             <Button buttonStyle={styles.loginButton} onPress={() => onRegisterPress()} title="Register" />
             {/* <Button containerStyle={styles.fbLoginButton} type='clear' onPress={() => onFbLoginPress()} title="Login With Facebook" /> */}
