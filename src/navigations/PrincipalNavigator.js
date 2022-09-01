@@ -2,10 +2,10 @@ import React from 'react';
 
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import Login from '../screens/Login';
-import Register from '../screens/Register';
-// import TabNavigator from './TabNavigation/TabNavigator'
-// import MessagesNavigator from './MessagesNavigator';
+import Login from '../screens/auth/Login';
+import Register from '../screens/auth/Register';
+import Home from '../screens/Home';
+import EmployeeNavigator from './EmployeeNavigator';
 // import PostNavigator from './PostNavigator';
 
 
@@ -19,7 +19,7 @@ export const SignOutNavigator = (props) => {
     <Stack.Navigator
       initialRouteName='login'
       >
-      <Stack.Screen name="login" component={Login} options={{ title: 'LOGIN' }} initialParams={{setUser:setUser,user:user}}  />
+      <Stack.Screen name="login" component={Login} options={{ title: 'LOGIN' }} initialParams={{setUser:setUser,user:user}} />
       <Stack.Screen name="register" component={Register} initialParams={{setUser:setUser,user:user}} />
     </Stack.Navigator>
    
@@ -27,30 +27,33 @@ export const SignOutNavigator = (props) => {
 };
 export const SignInNavigator = (props) => {
 
- 
+  var user=props.user
+  var setUser=props.setUser
+  console.log(user,'principalnav');
 
   return (
 
     <Stack.Navigator
-    initialRouteName='tab'
+    initialRouteName='home'
     screenOptions={{
-      headerShown: false,
+      // headerShown: false,
     }} 
-  
     >
       
-      {/* <Stack.Screen
-        name="tab"
-        component={TabNavigator}
+      <Stack.Screen
+        name="home"
+        component={Home}
         options={{ title: 'Welcome' }}
-        initialParams={{setUser:props.setUser}}
-      /> */}
-      {/* <Stack.Screen
-        name="newPost"
-        component={PostNavigator}
-        options={{ title: 'New post' }}
+        initialParams={{setUser:setUser,user:user}}
       />
       <Stack.Screen
+        name="StackEmployees"
+        component={EmployeeNavigator}
+        options={{ title: 'Employees' }}
+        initialParams={{setUser:setUser,user:user}}
+
+      />
+      {/* <Stack.Screen
         name="messages"
         component={MessagesNavigator}
         options={{ title: 'Messages' }}
