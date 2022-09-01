@@ -27,14 +27,16 @@ export const SignOutNavigator = (props) => {
 };
 export const SignInNavigator = (props) => {
 
- 
+  var user=props.user
+  var setUser=props.setUser
+  console.log(user,'principalnav');
 
   return (
 
     <Stack.Navigator
-    initialRouteName='tab'
+    initialRouteName='home'
     screenOptions={{
-      headerShown: false,
+      // headerShown: false,
     }} 
     >
       
@@ -42,12 +44,14 @@ export const SignInNavigator = (props) => {
         name="home"
         component={Home}
         options={{ title: 'Welcome' }}
-        initialParams={{setUser:props.setUser}}
+        initialParams={{setUser:setUser,user:user}}
       />
       <Stack.Screen
-        name="employees"
+        name="StackEmployees"
         component={EmployeeNavigator}
         options={{ title: 'Employees' }}
+        initialParams={{setUser:setUser,user:user}}
+
       />
       {/* <Stack.Screen
         name="messages"
