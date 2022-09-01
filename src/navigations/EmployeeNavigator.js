@@ -10,16 +10,17 @@ import AddEmployee from '../screens/employee/addEmployee';
 
 
 const Stack = createNativeStackNavigator();
- const EmployeeNavigator = (props) => {
-
+ const EmployeeNavigator = ({route}) => {
+const user=route.params.user
+console.log(user,'emplyeenavigator');
  
 
     return (
   
       <Stack.Navigator
-      initialRouteName='tab'
+      initialRouteName='employees'
       screenOptions={{
-        headerShown: false,
+        // headerShown: false,
       }} 
       >
         
@@ -27,6 +28,7 @@ const Stack = createNativeStackNavigator();
         <Stack.Screen
           name="employees"
           component={Employees}
+          // initialParams={user}
           options={{ title: 'Employees' }}
         />
         
@@ -34,7 +36,7 @@ const Stack = createNativeStackNavigator();
           name="addEmployee"
           component={AddEmployee}
           options={{ title: 'Welcome' }}
-          initialParams={{setUser:props.setUser}}
+      
         />
       </Stack.Navigator>
   

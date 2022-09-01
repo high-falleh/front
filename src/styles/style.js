@@ -10,12 +10,16 @@ import { StyleSheet } from 'react-native'
 
 const styles = StyleSheet.create({
     body: {
+        
         backgroundColor: 'white',
         height: '100%'
     },
+    box:{margin :30},
     button:{
         height:100,
-        width:100
+        width:100,
+        // marginTop:30,
+        
     },
     //search
     search: {
@@ -33,6 +37,7 @@ const styles = StyleSheet.create({
     icon: { margin: 10 },
     //header Screen
     headerContainer: {
+        
         flexDirection: 'row',
         height: 60,
         width: '100%',
@@ -44,7 +49,8 @@ const styles = StyleSheet.create({
     titleHeader: {
         fontSize: 25,
         fontWeight: '500',
-        lineHeight: 25
+        lineHeight: 25,
+        
     },
     logo: {
         width: '30%',
