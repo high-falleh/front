@@ -1,25 +1,39 @@
-import { Text, View } from "react-native";
+import { Text, View, Image } from "react-native";
 import styles from "../styles/style";
 import { Button, SocialIcon } from "react-native-elements";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import axios from "axios";
+import React, { useState, useEffect } from "react";
 
-import React from "react";
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////   TeamWork makes the dream Work        //////////////////////////////////////////////////
+/////////////////////////////////////////////////        Riadh & Khalil & Tahar          ///////////////////////////////////////////////////
+////////////////////////////////////////////////              HighFalleh                ////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-const Home = ({ navigation ,route}) => {
-   console.log(route.params,'This is home');    
-var user =route.params.user
-  const signOut=()=>{
-    route.params.setUser(null)
-    AsyncStorage.removeItem('user')
-  }
+const Home = ({ navigation, route }) => {
+  console.log(route.params, "This is home");
+
+  var user = route.params.user;
+  const signOut = () => {
+    route.params.setUser(null);
+    AsyncStorage.removeItem("user");
+  };
   return (
     <View style={styles.box}>
       <Text>Home</Text>
       <View style={styles.flex}>
         <Button
           buttonStyle={styles.button}
-          onPress={() => navigation.navigate("StackEmployees",{screen:'employees',params:{user:user}})}
+          onPress={() =>
+            navigation.navigate("StackEmployees", {
+              screen: "employees",
+              params: { user: user },
+            })
+          }
           title="Employees"
         />
         <Button
@@ -61,11 +75,11 @@ var user =route.params.user
           onPress={() => navigation.navigate("suppliers")}
           title="Suppliers"
         />
-             <Button
-            buttonStyle={styles.loginButton}
-            onPress={() => signOut()}
-            title="SignOut"
-          />
+        <Button
+          buttonStyle={styles.loginButton}
+          onPress={() => signOut()}
+          title="SignOut"
+        />
       </View>
     </View>
   );
