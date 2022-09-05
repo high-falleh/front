@@ -9,13 +9,45 @@ import { StyleSheet } from 'react-native'
 
 
 const styles = StyleSheet.create({
-    body: {
+    container: {
+        // paddingTop:40,        
+        // alignItems:"center",
+        alignContent:"center",
         backgroundColor: 'white',
-        height: '100%'
+        // height: '100%'
     },
+    body:{
+        flexDirection:"row",
+        alignContent:"center",
+        padding:30,
+    },
+
     button:{
-        height:100,
-        width:100
+        padding:0,
+        margin:8,
+        height:140,
+        width:100,
+        borderWidth:1,
+        borderRadius:30,
+        borderColor:"grey"
+    },
+    tileTitle:{
+        textAlign:"center"
+    },
+    header:{
+        justifyContent:"space-around",
+
+        alignSelf:"flex-end",
+        flexDirection:"row",
+        padding:50,
+        
+    },
+    disconnectButton:{
+       backgroundColor:"red"
+    },
+    profilIcon:{
+        width:40,
+        height:40
     },
     //search
     search: {
@@ -30,7 +62,11 @@ const styles = StyleSheet.create({
         width: '100%'
     },
     //icons
-    icon: { margin: 10 },
+    icon: {
+        margin:10,
+         alignSelf:"center", 
+         width:80, 
+         height:80 },
     //header Screen
     headerContainer: {
         flexDirection: 'row',
@@ -168,10 +204,10 @@ const styles = StyleSheet.create({
     },
     //New Post
     //Camera screen
-    container: {
-		flex: 1,
-		// backgroundColor: theme.colors.black
-	}
+    // container: {
+	// 	flex: 1,
+	// 	// backgroundColor: theme.colors.black
+	// }
 
 })
 export default styles;

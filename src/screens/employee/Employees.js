@@ -1,15 +1,21 @@
-import { View, Text,Button } from 'react-native'
-import React from 'react'
+import { View, Text, Button, SafeAreaView, ScrollView } from "react-native";
+import React from "react";
 
-
-const Employees = ({navigation}) => {
+const Employees = ({ navigation }) => {
   return (
-    <View>
-      <Text>Employees</Text>
-      <Button title="back" onPress={()=>navigation.goBack()}/>
-      <Button title="add" onPress={()=>navigation.navigate('addEmployee')}/>
-    </View>
-  )
-}
+    <SafeAreaView>
+      <ScrollView>
+        <View style={{flex:1, marginTop:20}}>
+          <Text>Employees</Text>
+          <Button title="back" onPress={() => navigation.goBack()} />
+          <Button
+            title="add"
+            onPress={() => navigation.navigate("addEmployee")}
+          />
+        </View>
+      </ScrollView>
+    </SafeAreaView>
+  );
+};
 
-export default Employees
+export default Employees;
