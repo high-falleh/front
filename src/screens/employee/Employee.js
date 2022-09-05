@@ -2,9 +2,9 @@
 
 
 
-import  React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import AuthNavigator from './src/navigations/AuthNavigator'
+import { View, Text, Button, Image } from "react-native";
+import React from "react";
+import call from "react-native-phone-call";
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -16,14 +16,37 @@ import AuthNavigator from './src/navigations/AuthNavigator'
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-const App = () => {
+const Employee = ({ route, navigation }) => {
+  var ananymous = require("../../../assets/profile.png");
+  const employee = route.params.elem;
+  const args = {
+    number: employee.employeeTel.toString(), // String value with the number to call
+    prompt: false, // Optional boolean property. Determines if the user should be prompted prior to the call
+    skipCanOpen: true, // Skip the canOpenURL check
+  };
+  const makeCall = () => {
+    call(args).catch(console.error);
+  };
 
   return (
-    
-    <NavigationContainer>
-      <AuthNavigator/>
-    </NavigationContainer>
+    <View>
+      <Text>HELLOOOO</Text>
+      <Text>{console.log(employee)}</Text>
+      <Image
+        source={
+          employee.employeePicture
+            ? { uri: employee.employeePicture }
+            : ananymous
+        }
+        style={{ width: 200, height: 200 }}
+      />
+      <Text>Name : {employee.employeeName}</Text>
+      <Text>Salary : {employee.employeeSalary}</Text>
+      <Text>Tel : {employee.employeeTel}</Text>
+      <Button title="Call" onPress={makeCall} />
+      <Button title="Delete" />
+    </View>
   );
 };
 
-export default App;
+export default Employee;
