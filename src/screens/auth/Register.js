@@ -19,6 +19,7 @@ import {
 import { Button, SocialIcon } from "react-native-elements";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as Facebook from "expo-facebook";
+import ip from "../../constant/ip";
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -74,7 +75,7 @@ export default function Register({ navigation, route }) {
       return;
     } else {
       axios
-        .post(`http://192.168.1.193:3000/api/user/register`, {
+        .post(`http://${ip}:3000/api/user/register`, {
           userFullName: userFullName,
           userEmail: userEmail,
           userPassword: userPassword,
@@ -90,7 +91,7 @@ export default function Register({ navigation, route }) {
             AsyncStorage.setItem("user", JSON.stringify(result.data[1]));
             route.params.setUser(result.data[1]);
             axios.post(
-              `http://192.168.1.193:3000/api/user/addSession`,
+              `http://${ip}:3000/api/user/addSession`,
               result.data[1].userId
             );
           }

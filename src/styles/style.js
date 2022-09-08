@@ -5,21 +5,63 @@ import { StyleSheet } from 'react-native'
 // const gris=colors.gris
 // const blue=colors.blue
 // const beige=colors.beige
-
-
-
 const styles = StyleSheet.create({
-    body: {
-        
-        backgroundColor: 'white',
-        height: '100%'
+    container: {
+        paddingTop:10,        
+        flex: 1,
+        margin:1,
+        height:1500,
     },
-    box:{margin :30},
-    button:{
-        height:100,
-        width:100,
-        // marginTop:30,
+    header:{
+        justifyContent:"space-between",
+        backgroundColor:"",
+        flexDirection:"row",
+        padding:20,
+        borderWidth:1,
+        borderRadius:20,
         
+    },
+    title:{
+        textAlign:"center",
+        fontSize:20,
+        fontWeight:"bold",
+        padding:20,
+    },
+    body:{
+        flexDirection:"row",
+        // alignContent:"center",
+        padding:30,
+        flex: 1,
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    },
+
+    button:{
+        padding:0,
+        margin:8,
+        height:140,
+        width:100,
+        borderWidth:1,
+        borderRadius:30,
+        borderColor:"grey"
+    },
+    tileTitle:{
+        textAlign:"center",
+        fontSize:17,
+        fontWeight:"bold",
+    },
+    disconnectButton:{
+       backgroundColor:"black",
+       borderRadius:10,
+    //    left:250,
+       width:120,
+    //    marginTop:160,
+    //    marginLeft:240,
+    },
+    profilIcon:{
+        width:40,
+        height:40
+
     },
     //search
     search: {
@@ -34,7 +76,12 @@ const styles = StyleSheet.create({
         width: '100%'
     },
     //icons
-    icon: { margin: 10 },
+    icon: {
+        margin:10,
+         alignSelf:"center", 
+         width:80, 
+         height:80 
+        },
     //header Screen
     headerContainer: {
         
@@ -174,10 +221,10 @@ const styles = StyleSheet.create({
     },
     //New Post
     //Camera screen
-    container: {
-		flex: 1,
-		// backgroundColor: theme.colors.black
-	}
+    // container: {
+	// 	flex: 1,
+	// 	// backgroundColor: theme.colors.black
+	// }
 
 })
 export default styles;

@@ -1,12 +1,10 @@
-
-
-
-
 import { View, Text, Button, TextInput, Image } from "react-native";
 import React, { useState } from "react";
 import axios from "axios";
-import styles from "../../styles/styleAuth";
-import pickImage from "../../camera";
+// import styles from "../../styles/styleAuth";
+import styles from "../../styles/styleEmployee";
+import ip from "../../constant/ip";
+import mime from "mime";
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -35,21 +33,23 @@ const AddEmployee = ({ navigation, route }) => {
     } else {
       if (image) {
         const formData = new FormData();
-        formData.append("file", {
+        formData.append("image", {
           uri: image.uri,
           name: image.uri.split("/").pop(),
-          type: image.type,
+          type: mime.getType(image.uri), // image.type returns 'image' but mime.getType(image.uri) returns 'image/jpeg' or whatever is the type
         });
-        formData.append("upload_preset", "nt1uphup");
+        formData.append("upload_preset", "ehzqyvxt");
         console.log("image", formData);
         axios
-          .post("http://api.cloudinary.com/v1_1/magico/image/upload", formData)
+          .post(
+            "http://api.cloudinary.com/v1_1/brahamtahar/image/upload",
+            formData
+          )
           .then((result) => {
-            let employeePicture = result.data.url;
-
             console.log(result.data, "cloudinary");
+            let employeePicture = result.data.url;
             axios
-              .post(`http://192.168.1.193:3000/api/employee/addNewEmployee`, {
+              .post(`http://${ip}:3000/api/employee/addNewEmployee`, {
                 userId: user.userId,
                 employeeName: employeeName,
                 employeeTel: employeeTel,
@@ -67,17 +67,18 @@ const AddEmployee = ({ navigation, route }) => {
               .catch((err) => {
                 console.log(err);
               });
-          });
+          })
+          .catch((err) => console.log(err, "our err"));
       } else {
         axios
-          .post(`http://192.168.1.193:3000/api/employee/addNewEmployee`, {
+          .post(`http://${ip}:3000/api/employee/addNewEmployee`, {
             userId: user.userId,
             employeeName: employeeName,
             employeeTel: employeeTel,
             employeeSalary: employeeSalary,
           })
           .then((result) => {
-            console.log(result);
+            console.log(result.data);
             route.params.setChangeData(!route.params.changeData);
             navigation.navigate("StackEmployees", {
               screen: "employees",
@@ -94,18 +95,7 @@ const AddEmployee = ({ navigation, route }) => {
   return (
     <View>
       <Text>AddEmployee</Text>
-      <View>
-        <Button
-          title="Pick an image from camera roll"
-          onPress={() => pickImage(setImage)}
-        />
-        {image && (
-          <Image
-            source={{ uri: image.uri }}
-            style={{ width: 200, height: 200 }}
-          />
-        )}
-      </View>
+
       <TextInput
         placeholder="Full Name"
         placeholderColor="#c4c3cb"
@@ -124,7 +114,18 @@ const AddEmployee = ({ navigation, route }) => {
         style={styles.loginFormTextInput}
         onChangeText={setEmployeeSalary}
       />
-
+      <View>
+        <Button
+          title="Pick an image from camera roll"
+          onPress={() => pickImage()}
+        />
+        {image && (
+          <Image
+            source={{ uri: image.uri }}
+            style={{ width: 200, height: 200 }}
+          />
+        )}
+      </View>
       <Button title="Save" onPress={() => newEmployee()} />
 
       <Button title="back" onPress={() => navigation.goBack()} />
