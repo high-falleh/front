@@ -13,6 +13,7 @@ import {
 import call from "react-native-phone-call";
 import axios from "axios";
 import React, { useState, useEffect } from "react";
+import ip from "../../constant/ip";
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -34,7 +35,7 @@ const Employees = ({ navigation, route }) => {
   useEffect(() => {
     axios
       .get(
-        `http://192.168.1.193:3000/api/employee/getAllEmployeesByUserId/${user.userId}` // Get All employees belonging to specific user from back
+        `http://${ip}:3000/api/employee/getAllEmployeesByUserId/${user.userId}` // Get All employees belonging to specific user from back
       )
       .then((result) => {
         setAllEmployees(result.data[1]);

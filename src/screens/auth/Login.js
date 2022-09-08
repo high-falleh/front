@@ -16,6 +16,7 @@ import {
 } from "react-native";
 import { Button, SocialIcon } from "react-native-elements";
 import * as Facebook from "expo-facebook";
+import ip from "../../constant/ip";
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -36,7 +37,7 @@ export default function LoginScreen({ navigation, route }) {
 
   const login = () => {
     axios
-      .post(`http://192.168.1.193:3000/api/user/login`, {
+      .post(`http://${ip}:3000/api/user/login`, {
         userEmail: userEmail,
         userPassword: userPassword,
       })
@@ -47,7 +48,7 @@ export default function LoginScreen({ navigation, route }) {
           AsyncStorage.setItem("user", JSON.stringify(result.data[1]));
           route.params.setUser(result.data[1]);
           axios.post(
-            `http://192.168.1.193:3000/api/user/addSession`,
+            `http://${ip}:3000/api/user/addSession`,
             result.data[1].userId
           );
         }

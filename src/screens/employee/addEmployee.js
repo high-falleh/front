@@ -7,6 +7,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import styles from "../../styles/styleAuth";
 import pickImage from "../../camera";
+import ip from "../../constant/ip";
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -49,7 +50,7 @@ const AddEmployee = ({ navigation, route }) => {
 
             console.log(result.data, "cloudinary");
             axios
-              .post(`http://192.168.1.193:3000/api/employee/addNewEmployee`, {
+              .post(`http://${ip}:3000/api/employee/addNewEmployee`, {
                 userId: user.userId,
                 employeeName: employeeName,
                 employeeTel: employeeTel,
@@ -70,7 +71,7 @@ const AddEmployee = ({ navigation, route }) => {
           });
       } else {
         axios
-          .post(`http://192.168.1.193:3000/api/employee/addNewEmployee`, {
+          .post(`http://${ip}:3000/api/employee/addNewEmployee`, {
             userId: user.userId,
             employeeName: employeeName,
             employeeTel: employeeTel,
