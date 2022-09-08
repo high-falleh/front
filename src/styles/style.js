@@ -5,21 +5,35 @@ import { StyleSheet } from 'react-native'
 // const gris=colors.gris
 // const blue=colors.blue
 // const beige=colors.beige
-
-
-
 const styles = StyleSheet.create({
     container: {
-        // paddingTop:40,        
-        // alignItems:"center",
-        alignContent:"center",
-        backgroundColor: 'white',
-        // height: '100%'
+        paddingTop:10,        
+        flex: 1,
+        margin:1,
+        height:1500,
+    },
+    header:{
+        justifyContent:"space-between",
+        backgroundColor:"",
+        flexDirection:"row",
+        padding:20,
+        borderWidth:1,
+        borderRadius:20,
+        
+    },
+    title:{
+        textAlign:"center",
+        fontSize:20,
+        fontWeight:"bold",
+        padding:20,
     },
     body:{
         flexDirection:"row",
-        alignContent:"center",
+        // alignContent:"center",
         padding:30,
+        flex: 1,
+    flexDirection: 'row',
+    flexWrap: 'wrap',
     },
 
     button:{
@@ -32,22 +46,22 @@ const styles = StyleSheet.create({
         borderColor:"grey"
     },
     tileTitle:{
-        textAlign:"center"
-    },
-    header:{
-        justifyContent:"space-around",
-
-        alignSelf:"flex-end",
-        flexDirection:"row",
-        padding:50,
-        
+        textAlign:"center",
+        fontSize:17,
+        fontWeight:"bold",
     },
     disconnectButton:{
-       backgroundColor:"red"
+       backgroundColor:"black",
+       borderRadius:10,
+    //    left:250,
+       width:120,
+    //    marginTop:160,
+    //    marginLeft:240,
     },
     profilIcon:{
         width:40,
         height:40
+
     },
     //search
     search: {
@@ -66,9 +80,11 @@ const styles = StyleSheet.create({
         margin:10,
          alignSelf:"center", 
          width:80, 
-         height:80 },
+         height:80 
+        },
     //header Screen
     headerContainer: {
+        
         flexDirection: 'row',
         height: 60,
         width: '100%',
@@ -80,7 +96,8 @@ const styles = StyleSheet.create({
     titleHeader: {
         fontSize: 25,
         fontWeight: '500',
-        lineHeight: 25
+        lineHeight: 25,
+        
     },
     logo: {
         width: '30%',
