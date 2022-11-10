@@ -1,10 +1,15 @@
-
-
-
-
-import { View, Text, Button, Image } from "react-native";
-import React from "react";
-import call from "react-native-phone-call";
+import {
+    View,
+    Text,
+    TouchableOpacity,
+    Image,
+    ScrollView,
+    SafeAreaView,
+    StatusBar,
+  } from "react-native";
+  import axios from "axios";
+import React, { useState, useEffect } from "react";
+import ip from "../../constant/ip";
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -16,37 +21,19 @@ import call from "react-native-phone-call";
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-const Employee = ({ route, navigation }) => {
-  var ananymous = require("../../../assets/profile.png");
-  const employee = route.params.employee;
-  const args = {
-    number: employee.employeeTel.toString(), // String value with the number to call
-    prompt: false, // Optional boolean property. Determines if the user should be prompted prior to the call
-    skipCanOpen: true, // Skip the canOpenURL check
-  };
-  const makeCall = () => {
-    call(args).catch(console.error);
-  };
+const Cows = ({ navigation, route }) => {
 
-  return (
-    <View>
-      <Text>HELLOOOO</Text>
-      <Text>{console.log(employee)}</Text>
-      <Image
-        source={
-          employee.employeePicture
-            ? { uri: employee.employeePicture }
-            : ananymous
-        }
-        style={{ width: 200, height: 200 }}
-      />
-      <Text>Emp. Name : {employee.employeeName}</Text>
-      <Text>Salary : {employee.employeeSalary}</Text>
-      <Text>Tel : {employee.employeeTel}</Text>
-      <Button title="Call" onPress={makeCall} />
-      <Button title="Delete" />
-    </View>
-  );
-};
 
-export default Employee;
+
+    return(
+        <Text>HELLO Cows</Text>
+    )
+}
+
+
+
+
+
+
+
+export default Cows;

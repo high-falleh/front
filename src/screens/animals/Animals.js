@@ -1,10 +1,17 @@
-
-
-
-
-import { View, Text, Button, Image } from "react-native";
-import React from "react";
-import call from "react-native-phone-call";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  Image,
+  ScrollView,
+  SafeAreaView,
+  StatusBar,
+} from "react-native";
+import axios from "axios";
+import React, { useState, useEffect } from "react";
+import ip from "../../constant/ip";
+import styles from "../../styles/styleEmployee";
+import Ionicons from "react-native-vector-icons/Ionicons";
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -16,37 +23,40 @@ import call from "react-native-phone-call";
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-const Employee = ({ route, navigation }) => {
-  var ananymous = require("../../../assets/profile.png");
-  const employee = route.params.employee;
-  const args = {
-    number: employee.employeeTel.toString(), // String value with the number to call
-    prompt: false, // Optional boolean property. Determines if the user should be prompted prior to the call
-    skipCanOpen: true, // Skip the canOpenURL check
-  };
-  const makeCall = () => {
-    call(args).catch(console.error);
-  };
-
+const Animals = ({ navigation, route }) => {
+    var user = route.params.user; 
+    
   return (
-    <View>
-      <Text>HELLOOOO</Text>
-      <Text>{console.log(employee)}</Text>
-      <Image
-        source={
-          employee.employeePicture
-            ? { uri: employee.employeePicture }
-            : ananymous
-        }
-        style={{ width: 200, height: 200 }}
-      />
-      <Text>Emp. Name : {employee.employeeName}</Text>
-      <Text>Salary : {employee.employeeSalary}</Text>
-      <Text>Tel : {employee.employeeTel}</Text>
-      <Button title="Call" onPress={makeCall} />
-      <Button title="Delete" />
-    </View>
+    <SafeAreaView>
+        <StatusBar />
+      <Text>HELLO AaaaNIMALS</Text>
+      <ScrollView>
+
+<TouchableOpacity title="Cows" onPress={()=> navigation.navigate("Cows", {
+                  user: user                 
+                })}>
+                           <View
+                style={{
+                  flexDirection: "row",
+                  alignItems: "center",
+                  width: 120,
+                  height:100,
+                  justifyContent: "space-between",
+                  borderWidth:1,
+                  borderColor:"#000"
+                }}
+              >
+                <Text>Cows</Text>
+ 
+              </View>
+                </TouchableOpacity>
+
+
+
+
+      </ScrollView>
+    </SafeAreaView>
   );
 };
 
-export default Employee;
+export default Animals;

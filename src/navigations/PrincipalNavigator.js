@@ -4,6 +4,7 @@ import Login from "../screens/auth/Login";
 import Register from "../screens/auth/Register";
 import Home from "../screens/Home";
 import EmployeeNavigator from "./EmployeeNavigator";
+import AnimalNavigator from "./AnimalNavigator";
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -60,6 +61,23 @@ export const SignInNavigator = (props) => {
         component={EmployeeNavigator}
         options={{
           title: "Employees",
+          headerStyle: {
+            backgroundColor: "#fff",
+          },
+          headerTintColor: "black",
+          headerTitleStyle: {
+            fontWeight: "bold",
+          
+          },
+          headerTitleAlign:"center"
+        }}
+        initialParams={{ setUser: setUser, user: user }}
+      />
+          <Stack.Screen
+        name="StackAnimals"
+        component={AnimalNavigator}
+        options={{
+          title: "Animals",
           headerStyle: {
             backgroundColor: "#fff",
           },

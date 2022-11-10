@@ -14,7 +14,7 @@ import React, { useState, useEffect } from "react";
 import styles from "../../styles/styleEmployee";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import ip from "../../constant/ip";
-import { Icon } from "react-native-elements/dist/icons/Icon";
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -33,6 +33,7 @@ const Employees = ({ navigation, route }) => {
   var user = route.params.user; //All user data
 
   useEffect(() => {
+
     axios
       .get(
         `http://${ip}:3000/api/employee/getAllEmployeesByUserId/${user.userId}` // Get All employees belonging to specific user from back
@@ -45,22 +46,10 @@ const Employees = ({ navigation, route }) => {
   return (
     <SafeAreaView>
       <ScrollView>
-        <View style={styles.container}>
+        <View>
           <StatusBar style="auto" />
           <View style={styles.header}>
-            {/* <TouchableOpacity
-            style={styles.backButton}
-            title="back"
-            onPress={() => navigation.goBack()}
-          >
-          <Ionicons 
-          name="add-outline"
-                  size={28}
-                  color={"#023047"}
-                  style={styles.icon}
-          />
-          </TouchableOpacity> */}
-            {/* <View style={styles.addButton}> */}
+            <Text style={styles.numberEmployees}>Employees:{AllEmployees.length}</Text>
             <TouchableOpacity
               //Add New Employee Butoon
               style={styles.addButton}
@@ -92,69 +81,79 @@ const Employees = ({ navigation, route }) => {
             </TouchableOpacity>
             {/* </View> */}
           </View>
-          <View style={styles.body}>
-            <View>
-              {AllEmployees.map(
-                (
-                  elem,
-                  index //mapping through all employees (Please check figma )
-                ) => (
-                  <View style={styles.box}>
-                    <TouchableOpacity
-                      key={index}
-                      onPress={() =>
-                        navigation.navigate("StackEmployees", {
-                          screen: "Employee",
-                          params: { elem: elem },
-                        })
-                      }
-                    >
-                      <View
-                        style={{ flexDirection: "row", alignItems: "center" }}
-                      >
-                        <View>
-                          <Image //Employee picture (Follow Figma for position)
-                            source={
-                              elem.employeePicture
-                                ? { uri: elem.employeePicture }
-                                : ananymous
-                            }
-                            style={{ width: 60, height: 60, margin: 6 }}
-                          />
-                        </View>
-                        <View>
-                          <Text
-                            style={{ color: "white", left: 60, fontSize: 36 }}
-                          >
-                            {elem.employeeName}
-                          </Text>
-                        </View>
-                      </View>
-                    </TouchableOpacity>
-
-                    <TouchableOpacity //Call employee (Please follow figma for style and position)
-                      style={styles.callButton}
-                      onPress={(makeCall) =>
-                        call({
-                          number: elem.employeeTel.toString(), // String value with the number to call
-                          prompt: false, // Optional boolean property. Determines if the user should be prompted prior to the call
-                          skipCanOpen: true, // Skip the canOpenURL check
-                        })
-                      }
-                    >
-                      <Ionicons
-                        name="call-outline"
-                        size={36}
-                        color={"white"}
-                        style={styles.icon}
-                      />
-                    </TouchableOpacity>
-                  </View>
-                )
-              )}
-            </View>
-          </View>
         </View>
+
+        {AllEmployees.map(
+          (
+            elem,
+            index //mapping through all employees (Please check figma )
+          ) => (
+              <TouchableOpacity
+                key={index}
+                onPress={() =>
+                  navigation.navigate("StackEmployees", {
+                    screen: "Employee",
+                    params: { employee: elem },
+                  })
+                }
+              >
+            <View key={index} style={styles.box}>
+              <View style={{width:'30%'}}>
+
+                <Image //Employee picture (Follow Figma for position)
+                  source={
+                    elem.employeePicture
+                      ? { uri: elem.employeePicture }
+                      : ananymous
+                  }
+                  style={{ width: 100, height: 100,borderBottomLeftRadius:10,borderTopLeftRadius:10 }}
+                />
+              </View>
+              
+                <View
+                  style={{
+                    flexDirection:'row',
+                    justifyContent:'space-between',
+                    width:'65%',
+                                     
+                    margin: 10,
+                    
+                  }}
+                >
+                  <View style={{height:'100%', 
+       justifyContent:'center',
+       }}>
+                    <Text style={{ fontSize: 20}}>
+                      {elem.employeeName}
+                      
+                    </Text>
+                    <Text style={{ fontSize: 10}}>
+                      {elem.employeeName}
+                      
+                    </Text>
+                  </View>
+                  <TouchableOpacity //Call employee (Please follow figma for style and position)
+                    style={styles.callButton}
+                    onPress={(makeCall) =>
+                      call({
+                        number: elem.employeeTel.toString(), // String value with the number to call
+                        prompt: false, // Optional boolean property. Determines if the user should be prompted prior to the call
+                        skipCanOpen: true, // Skip the canOpenURL check
+                      })
+                    }
+                  >
+                    <Ionicons
+                      name="call-outline"
+                      size={36}
+                      color={"green"}
+                      style={styles.icon}
+                    />
+                  </TouchableOpacity>
+                </View>
+            </View>
+              </TouchableOpacity>
+          )
+        )}
       </ScrollView>
     </SafeAreaView>
   );

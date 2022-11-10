@@ -74,7 +74,7 @@ const Home = ({ navigation, route }) => {
 
               <TouchableOpacity
                 style={styles.button}
-                onPress={() => navigation.navigate("animals")}
+                onPress={() => navigation.navigate("StackAnimals")}
                 title="Animals"
               >
                 <View>

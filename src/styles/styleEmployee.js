@@ -1,64 +1,46 @@
-import { StyleSheet } from 'react-native'
+import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
+  container: {},
 
-    container : {
-        height:1500,
-        // margin:10,
-        paddingTop:30,
-        backgroundColor:"#fff",
-        alignItems:"center",
-    },
+  header: {
+    marginTop: 30,
+  },
+  numberEmployees: {
+textAlign:"right",
+paddingBottom:22,
+marginRight:10
+ 
 
-    header:{
-        // paddingLeft:60,
-        // paddingRight:60,
-       
-        // backgroundColor:"#caffbf",
-        // borderBottomLeftRadius:40,
-        // alignSelf:"center",
-        // backgroundColor:"blue"
-    },
+  },
 
-    addButton:{
-        backgroundColor:"black",
-        align:"center",
-        padding:12,
-        borderRadius:8,
-        marginLeft:190,
-        borderWidth:1,
-        borderColor:""
-    },
+  addButton: {
+    backgroundColor: "black",
+    align: "center",
+    padding: 12,
+    borderRadius: 8,
+    marginLeft: 190,
+    borderWidth: 1,
+    borderColor: "",
+  },
 
-    backButton:{
-        margin:20,
-        
-    },
+  backButton: {
+    margin: 20,
+  },
 
-    body:{
-        paddingTop:20,
-        flexDirection:"column",
+  body: {},
 
-    },
-    
-    box:{
-        flexDirection:"row",
-        justifyContent:"space-between",
-        alignItems:"center",
-        position:"relative",
-        width:380,
-        backgroundColor:"#38a3a5",
-        borderRadius:10,
-        borderWidth:1,
-        borderColor:"#359bbd",
-        margin:20,
-    },
-    callButton:{
-        margin:10
-    },
+  box: {
+    flexDirection: "row",
+    display: "flex",
+    height: 100,
+    backgroundColor: "#fff",
+    borderRadius: 10,
+    margin: 10,
+  },
+  callButton: {
+    margin: 10,
+  },
+});
 
-    
-})
-
-
-export default styles; 
+export default styles;

@@ -1,11 +1,8 @@
-
-
-
-
 import React, { useState } from "react";
 import axios from "axios";
 import styles from "../../styles/styleAuth";
 import {
+  TouchableOpacity,
   Alert,
   Image,
   Keyboard,
@@ -20,6 +17,7 @@ import { Button, SocialIcon } from "react-native-elements";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as Facebook from "expo-facebook";
 import ip from "../../constant/ip";
+import DateTimePickerModal from "react-native-modal-datetime-picker";
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -37,9 +35,28 @@ export default function Register({ navigation, route }) {
   const [userEmail, setUserEmail] = useState("");
   const [userFullName, setUserFullName] = useState("");
   const [userPassword, setUserPassword] = useState("");
-  const [userDateOfBirth, setUserDateOfBirth] = useState("");
+  const [userDateOfBirth, setUserDateOfBirth] = useState("Date Of Birth");
   const [userPhone, setUserPhone] = useState("");
   const [message, setMessage] = useState("");
+  const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
+  const [confirm, setConfirm] = useState(false);
+  const showDatePicker = () => {
+    setDatePickerVisibility(true);
+  };
+
+  const hideDatePicker = () => {
+    setDatePickerVisibility(false);
+  };
+
+  const handleConfirm = (date) => {
+    let newDate = JSON.stringify(date).substr(1, 10);
+
+    console.log("A date has been picked:", newDate);
+    setUserDateOfBirth(newDate);
+    setConfirm(true);
+
+    hideDatePicker();
+  };
 
   const onRegisterPress = () => {
     route.params.setUser(false);
@@ -67,7 +84,7 @@ export default function Register({ navigation, route }) {
       setMessage(
         "Your password is weak , please add capital letter and characters"
       );
-      console.log(message)
+      console.log(message);
       return;
     }
     if (!userEmail.includes("@")) {
@@ -83,8 +100,7 @@ export default function Register({ navigation, route }) {
           userPhone: userPhone,
         })
         .then((result) => {
-       
-          setMessage(result.data[0])
+          setMessage(result.data[0]);
           console.log(result.data);
           console.log(message);
           if (result.data[0] == "connected") {
@@ -102,23 +118,6 @@ export default function Register({ navigation, route }) {
     }
   };
 
-  //   const onFbLoginPress = async () => {
-  //     try {
-  //       await Facebook.initializeAsync({
-  //         appId,
-  //       });
-  //       const { type, token } = await Facebook.logInWithReadPermissionsAsync({
-  //         permissions: ["public_profile", "email"],
-  //       });
-  //       if (type === "success") {
-  //         const response = await fetch(`https://graph.facebook.com/me?access_token=${token}`);
-  //         Alert.alert("Logged in!", `Hi ${(await response.json()).name}!`);
-  //       }
-  //     } catch ({ message }) {
-    //       Alert.alert(`Facebook Login Error: ${message}`);
-    //     }
-  //   };
-  
   return (
     <KeyboardAvoidingView style={styles.containerView} behavior="padding">
       {/* <TouchableWithoutFeedback onPress={Keyboard.dismiss}> */}
@@ -128,36 +127,55 @@ export default function Register({ navigation, route }) {
           <Image
             style={{ height: 80, width: "100%" }}
             source={require("../../../assets/splash.png")}
-            />
-            <Text>{message}</Text>
+          />
+          <Text>{message}</Text>
           <TextInput
             placeholder="FullName"
             onChangeText={setUserFullName}
-            placeholderColor="#c4c3cb"
+            placeholderTextColor="#c4c3cb"
             style={styles.loginFormTextInput}
           />
+
+          <TouchableOpacity
+            style={styles.loginFormTextInput}
+            edi
+            onPress={showDatePicker}
+          >
+            <Text
+              style={[
+                styles.birthdayText,
+                !confirm ? { color: "#c4c3cb" } : { color: "#000" },
+              ]}
+            >
+              {userDateOfBirth}
+            </Text>
+          </TouchableOpacity>
+
+          <DateTimePickerModal
+            buttonTextColorIOS="green"
+            isVisible={isDatePickerVisible}
+            mode="date"
+            onConfirm={handleConfirm}
+            onCancel={hideDatePicker}
+          />
+
           <TextInput
             placeholder="Email"
             onChangeText={setUserEmail}
-            placeholderColor="#c4c3cb"
+            placeholderTextColor="#c4c3cb"
             style={styles.loginFormTextInput}
           />
           <TextInput
             placeholder="Password"
-            placeholderColor="#c4c3cb"
+            placeholderTextColor="#c4c3cb"
             style={styles.loginFormTextInput}
             secureTextEntry={true}
             onChangeText={setUserPassword}
           />
-          <TextInput
-            placeholder="Date of Birth"
-            placeholderColor="#c4c3cb"
-            style={styles.loginFormTextInput}
-            onChangeText={setUserDateOfBirth}
-          />
+
           <TextInput
             placeholder="Phone Number"
-            placeholderColor="#c4c3cb"
+            placeholderTextColor="#c4c3cb"
             style={styles.loginFormTextInput}
             onChangeText={setUserPhone}
           />
@@ -166,7 +184,6 @@ export default function Register({ navigation, route }) {
             onPress={() => signUp()}
             title="Register"
           />
-          {/* <Button containerStyle={styles.fbLoginButton} type='clear' onPress={() => onFbLoginPress()} title="Login With Facebook" /> */}
           <Button
             containerStyle={styles.fbLoginButton}
             type="clear"
@@ -175,7 +192,6 @@ export default function Register({ navigation, route }) {
           />
         </View>
       </View>
-      {/* </TouchableWithoutFeedback>  */}
     </KeyboardAvoidingView>
   );
 }

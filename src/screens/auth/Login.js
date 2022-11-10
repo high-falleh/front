@@ -43,7 +43,7 @@ export default function LoginScreen({ navigation, route }) {
       })
       .then((result) => {
         setMessage(result.data[0]);
-        console.log(result.data);
+       
         if (result.data[0] == "connected") {
           AsyncStorage.setItem("user", JSON.stringify(result.data[1]));
           route.params.setUser(result.data[1]);
